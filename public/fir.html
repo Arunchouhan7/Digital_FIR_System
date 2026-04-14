@@ -1,0 +1,191 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register FIR - Virtual Police Station</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Serif+Display&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="badge"><i class="fa-solid fa-shield"></i></div>
+      <div>
+        <div class="title">Virtual Police Station</div>
+        <div class="subtitle">Register eFIR</div>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="nav" id="navMenu">
+      <a class="nav-btn" href="index.html">Citizen Portal</a>
+      <a class="nav-btn" href="fir.html">Start FIR</a>
+      <a class="nav-btn" href="track.html">Track FIR</a>
+      <a class="nav-btn" href="about.html">About</a>
+      <a class="nav-btn" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="panel glass">
+      <h2>Register eFIR</h2>
+      <form id="firForm" class="form-grid">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="full_name" minlength="5" required />
+        </div>
+        <div class="field">
+          <label>Mobile Number</label>
+          <input type="tel" name="mobile" minlength="10" maxlength="10" inputmode="numeric" pattern="[0-9]{10}" required />
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="field otp">
+          <label>Email OTP</label>
+          <div class="otp-row">
+            <input type="text" name="otp" maxlength="6" required />
+            <button type="button" id="sendOtp" class="btn small">Send OTP</button>
+            <button type="button" id="verifyOtp" class="btn small ghost">Verify OTP</button>
+          </div>
+          <div class="hint" id="otpStatus">OTP Status: <span id="otpValue">----</span> <span id="otpTimer"></span> <span id="otpMsg"></span></div>
+          <input type="hidden" name="otp_id" id="otpId" />
+        </div>
+        <div class="field">
+          <label>Aadhaar Number</label>
+          <input type="text" name="aadhaar" minlength="12" maxlength="12" inputmode="numeric" pattern="[0-9]{12}" required />
+        </div>
+        <div class="field">
+          <label>Incident Date & Time</label>
+          <input type="datetime-local" name="incident_time" required />
+        </div>
+        <div class="field">
+          <label>Incident Type</label>
+          <select name="incident_type" required>
+            <option value="">Select</option>
+            <option>Theft</option>
+            <option>Harassment</option>
+            <option>Cyber Crime</option>
+            <option>Missing Person</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label>Incident Location</label>
+          <input type="text" name="incident_location" required />
+        </div>
+        <div class="field full">
+          <label>Complaint Details</label>
+          <textarea name="complaint" rows="4" required></textarea>
+        </div>
+
+        <div class="field full">
+          <label>OCR Upload (image/pdf)</label>
+          <input type="file" id="ocrFile" accept="image/*,application/pdf" />
+          <button type="button" id="runOcr" class="btn small">Extract Text</button>
+          <textarea id="ocrResult" rows="3" placeholder="OCR text will appear here..."></textarea>
+          <input type="hidden" name="ocr_text" id="ocrTextHidden" />
+        </div>
+
+        <div class="field full">
+          <label>Digital Signature</label>
+          <div class="signature">
+            <canvas id="sigCanvas" width="700" height="220"></canvas>
+            <div class="sig-actions">
+              <button type="button" id="sigClear" class="btn small ghost">Clear</button>
+              <button type="button" id="sigSave" class="btn small">Use Signature</button>
+              <input type="hidden" name="signature" id="sigData" />
+            </div>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label>Location Snapshot</label>
+          <div class="geo-panel">
+            <div id="geoText">Fetching location...</div>
+            <div id="map"></div>
+          </div>
+          <input type="hidden" name="geo_json" id="geoJson" />
+        </div>
+
+        <div class="field full">
+          <button type="submit" class="btn">Submit FIR</button>
+        </div>
+      </form>
+      <div id="firStatus" class="status"></div>
+      <div id="firActions" class="print-actions" style="display:none;">
+        <button class="btn small" id="downloadPdf">Download FIR Copy</button>
+        <button class="btn small ghost" id="printFir">Print FIR</button>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Before You Submit</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Be Accurate</h4>
+          <p>Incorrect details can delay verification and case assignment.</p>
+        </div>
+        <div class="tip">
+          <h4>Attach Proof</h4>
+          <p>Include clear, relevant evidence to support your complaint.</p>
+        </div>
+        <div class="tip">
+          <h4>Confidentiality</h4>
+          <p>Your data is stored securely and visible only to admins.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Document Checklist</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Photo Evidence</h4>
+          <p>Clear images related to the incident or damage.</p>
+        </div>
+        <div class="tip">
+          <h4>Official Papers</h4>
+          <p>Any receipts, IDs, or proof documents related to the case.</p>
+        </div>
+        <div class="tip">
+          <h4>Witness Details</h4>
+          <p>Names and contact numbers of witnesses, if any.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>Virtual Police Station</div>
+    <!-- <div class="footer-links">
+      <a href="fir.html">Start FIR</a>
+      <a href="track.html">Track FIR</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="support.html">Help</a>
+      <a href="docs.html">Docs</a>
+    </div> -->
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.4/dist/tesseract.min.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/geo.js"></script>
+  <script src="assets/js/ocr.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

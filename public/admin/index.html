@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - Virtual Police Station</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="badge"><i class="fa-solid fa-shield"></i></div>
+      <div>
+        <div class="title">Admin Console</div>
+        <div class="subtitle">Virtual Police Station</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a class="nav-btn" href="../index.html">Citizen Portal</a>
+    </nav>
+  </header>
+
+  <main class="admin">
+    <section class="panel glass" id="adminLoginPanel">
+      <h2>Admin Login</h2>
+      <form id="adminLogin" class="form-grid single">
+        <div class="field">
+          <label>Username</label>
+          <input type="text" name="username" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" required />
+        </div>
+        <div class="field full">
+          <button class="btn" type="submit">Login</button>
+        </div>
+      </form>
+      <div id="adminStatus" class="status"></div>
+    </section>
+
+    <section class="panel glass" id="adminDashboard" style="display:none;">
+      <h2>Admin Analytics</h2>
+      <div class="stats" id="stats"></div>
+      <div class="panel glass" style="margin-bottom:20px;">
+        <h3>Visitor Analytics</h3>
+        <canvas id="visitChart" height="120"></canvas>
+        <div class="chart-grid">
+          <div class="chart-card glass">
+            <h4>Monthly Visitors</h4>
+            <canvas id="visitMonthChart" height="120"></canvas>
+          </div>
+          <div class="chart-card glass">
+            <h4>Yearly Visitors</h4>
+            <canvas id="visitYearChart" height="120"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="panel glass" style="margin-bottom:16px;">
+        <h3>FIR Filters</h3>
+        <div class="filter-grid">
+          <div class="field">
+            <label>FIR ID</label>
+            <input type="text" id="filterId" placeholder="ID" />
+          </div>
+          <div class="field">
+            <label>Mobile</label>
+            <input type="text" id="filterMobile" placeholder="Mobile" />
+          </div>
+          <div class="field">
+            <label>Status</label>
+            <select id="filterStatus">
+              <option value="">All</option>
+              <option>Submitted</option>
+              <option>In Review</option>
+              <option>Assigned</option>
+              <option>Closed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>City</label>
+            <input type="text" id="filterCity" placeholder="City" />
+          </div>
+          <div class="field">
+            <label>Type</label>
+            <input type="text" id="filterType" placeholder="Type" />
+          </div>
+          <div class="field">
+            <label>From</label>
+            <input type="date" id="filterFrom" />
+          </div>
+          <div class="field">
+            <label>To</label>
+            <input type="date" id="filterTo" />
+          </div>
+          <div class="field full">
+            <button class="btn small" id="applyFilters">Apply Filters</button>
+            <button class="btn small ghost" id="resetFilters">Reset</button>
+            <button class="btn small ghost" id="exportFirs">Export FIR (CSV)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table" id="firTable">
+          <thead>
+            <tr>
+              <th>FIR ID</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Time</th>
+              <th>City</th>
+              <th>IP</th>
+              <th>Status</th>
+              <th>View</th>
+              <th>PDF</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <h3>Geo Access Map</h3>
+      <div id="adminMap"></div>
+    </section>
+
+    <section class="panel glass" id="logPanel" style="display:none;">
+      <h2>Activity Logs</h2>
+      <div class="table-wrap">
+        <table class="table" id="logTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Action</th>
+              <th>Details</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel glass" id="visitorPanel" style="display:none;">
+      <h2>Visitors</h2>
+      <div class="table-wrap">
+        <table class="table" id="visitorTable">
+          <thead>
+            <tr>
+              <th>IP</th>
+              <th>City</th>
+              <th>Region</th>
+              <th>Country</th>
+              <th>Page</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button class="btn small ghost" id="exportVisitors">Export Visitors (CSV)</button>
+    </section>
+
+    <section class="panel glass" id="contactPanel" style="display:none;">
+      <h2>Contact Requests</h2>
+      <div class="table-wrap">
+        <table class="table" id="contactTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Category</th>
+              <th>Message</th>
+              <th>Attachment</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button class="btn small ghost" id="exportContacts">Export Contacts (CSV)</button>
+    </section>
+  </main>
+
+  <div id="firModal" class="modal" style="display:none;">
+    <div class="modal-card glass">
+      <div class="modal-header">
+        <h3>FIR Details</h3>
+        <button id="closeModal" class="nav-close">×</button>
+      </div>
+      <div id="firDetails" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../assets/js/admin.js"></script>
+</body>
+</html>

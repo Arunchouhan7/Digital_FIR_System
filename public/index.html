@@ -1,0 +1,314 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Virtual Police Station - Home</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Serif+Display&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="badge"><i class="fa-solid fa-shield"></i></div>
+      <div>
+        <div class="title">Virtual Police Station</div>
+        <div class="subtitle">VPS - eFIR with OCR & Signature</div>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="nav" id="navMenu">
+      <a class="nav-btn" href="fir.html">Start FIR</a>
+      <a class="nav-btn" href="track.html">Track FIR</a>
+      <a class="nav-btn" href="about.html">About</a>
+      <a class="nav-btn" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero hero-bg">
+      <div class="hero-copy">
+        <h1>File FIR in minutes with Aadhaar-based verification.</h1>
+        <p>Digitally sign, attach OCR evidence, and submit instantly. Your report is protected and geo-tagged for fast
+          response.</p>
+        <p class="lead">Designed for citizens and officers to reduce delays, improve clarity, and keep records secure.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="fir.html">Start FIR</a>
+          <a class="btn ghost" href="#services">View Services</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat">99.9%</div>
+            <div class="stat-label">Citizen portal availability</div>
+          </div>
+          <div>
+            <div class="stat">2 mins</div>
+            <div class="stat-label">Average filing time</div>
+          </div>
+          <div>
+            <div class="stat">Geo-secure</div>
+            <div class="stat-label">Auto location tagging</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card glass">
+        <div class="card-header">
+          <i class="fa-solid fa-fingerprint"></i>
+          <div>
+            <div class="card-title">Aadhaar Verification</div>
+            <div class="card-sub">OTP + Digital Signature</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ol class="steps">
+            <li>Enter Aadhaar Number</li>
+            <li>Verify OTP</li>
+            <li>Capture Signature</li>
+            <li>Submit FIR</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature glass">
+        <i class="fa-solid fa-file-shield"></i>
+        <h3>OCR Evidence Intake</h3>
+        <p>Upload FIR scans or written complaints and auto-extract details using OCR.</p>
+      </div>
+      <div class="feature glass">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <h3>Geo-IP Tagging</h3>
+        <p>Automatic location tracking with IP-based geolocation and visual map.</p>
+      </div>
+      <div class="feature glass">
+        <i class="fa-solid fa-lock"></i>
+        <h3>Secure Storage</h3>
+        <p>All data saved in MySQL with admin-only access and audit-friendly logs.</p>
+      </div>
+    </section>
+
+    <section id="services" class="panel glass">
+      <h2>Citizen Services</h2>
+      <p class="lead">Built for real-world reporting with clear steps, fast submission, and verified identity.</p>
+      <div class="service-grid">
+        <div class="service-card">
+          <h3>Register FIR</h3>
+          <p>Submit complaints with Aadhaar-based OTP, OCR evidence, and digital signature.</p>
+        </div>
+        <div class="service-card">
+          <h3>Track FIR Status</h3>
+          <p>Monitor the progress using FIR ID with status timeline and updates.</p>
+        </div>
+        <div class="service-card">
+          <h3>Evidence Vault</h3>
+          <p>Securely upload documents, photos, or scans to support investigation.</p>
+        </div>
+        <div class="service-card">
+          <h3>Emergency Guidance</h3>
+          <p>Instant helpline and advisory instructions for urgent cases.</p>
+        </div>
+        <div class="service-card">
+          <h3>Geo-tagging</h3>
+          <p>Location tagging improves dispatch accuracy and response time.</p>
+        </div>
+        <div class="service-card">
+          <h3>Print FIR Copy</h3>
+          <p>Generate printable FIR copies for official use and verification.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>How Filing Works</h2>
+      <div class="how-grid">
+        <div class="how-card">
+          <h4>Step 1: Identity Verification</h4>
+          <p>Enter Aadhaar and verify OTP to confirm your identity securely.</p>
+        </div>
+        <div class="how-card">
+          <h4>Step 2: Complaint Details</h4>
+          <p>Describe the incident clearly with time, location, and key details.</p>
+        </div>
+        <div class="how-card">
+          <h4>Step 3: Attach Evidence</h4>
+          <p>Upload documents or scans and use OCR for quick extraction.</p>
+        </div>
+        <div class="how-card">
+          <h4>Step 4: Submit & Track</h4>
+          <p>Receive your FIR ID and monitor the status online anytime.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Required Information</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Identity Details</h4>
+          <p>Full name, mobile number, and Aadhaar number for verification.</p>
+        </div>
+        <div class="tip">
+          <h4>Incident Details</h4>
+          <p>Date, time, exact location, and category of the incident.</p>
+        </div>
+        <div class="tip">
+          <h4>Supporting Evidence</h4>
+          <p>Photos, documents, or scanned copies, if available.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Public Notice</h2>
+      <p class="lead">This portal is intended for lawful reporting of incidents. Submissions are monitored for
+        verification, and all entries are logged for audit purposes.</p>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Authorized Access</h4>
+          <p>Only verified admin officers can review FIRs and update statuses.</p>
+        </div>
+        <div class="tip">
+          <h4>Evidence Integrity</h4>
+          <p>Uploaded files are stored securely and used only for case assessment.</p>
+        </div>
+        <div class="tip">
+          <h4>Misuse Warning</h4>
+          <p>False or misleading information is punishable under applicable law.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Quick Access</h2>
+      <div class="quick-grid">
+        <a class="quick-card" href="fir.html">
+          <i class="fa-solid fa-file-circle-plus"></i>
+          <div>
+            <h4>Register FIR</h4>
+            <p>Start a new complaint with digital signature.</p>
+          </div>
+        </a>
+        <a class="quick-card" href="track.html">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <div>
+            <h4>Track FIR</h4>
+            <p>Check status using your FIR ID.</p>
+          </div>
+        </a>
+        <a class="quick-card" href="support.html">
+          <i class="fa-solid fa-headset"></i>
+          <div>
+            <h4>Help & Support</h4>
+            <p>Guidelines and helpline information.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Security & Privacy Tips</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Protect Your Aadhaar</h4>
+          <p>Never share OTPs or PINs. Use only the official portal to submit FIR.</p>
+        </div>
+        <div class="tip">
+          <h4>Check URL</h4>
+          <p>Always confirm the website domain before entering personal details.</p>
+        </div>
+        <div class="tip">
+          <h4>Upload Safe Files</h4>
+          <p>Share only relevant documents. Avoid sharing unrelated personal data.</p>
+        </div>
+        <div class="tip">
+          <h4>Describe Clearly</h4>
+          <p>Include time, location, and parties involved to speed up verification.</p>
+        </div>
+        <div class="tip">
+          <h4>Keep Copies</h4>
+          <p>Save your FIR ID and printable copy for future reference.</p>
+        </div>
+        <div class="tip">
+          <h4>Emergency First</h4>
+          <p>For immediate danger, contact emergency services before filing online.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Official Guidance</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Police Verification</h4>
+          <p>All FIRs are verified by authorized officers before case assignment.</p>
+        </div>
+        <div class="tip">
+          <h4>Confidential Handling</h4>
+          <p>Information is handled with strict confidentiality and limited access.</p>
+        </div>
+        <div class="tip">
+          <h4>Safe Reporting</h4>
+          <p>Report only factual details. False reporting may be legally actionable.</p>
+        </div>
+        <div class="tip">
+          <h4>Emergency First</h4>
+          <p>If anyone is in immediate danger, call emergency services before filing online.</p>
+        </div>
+        <div class="tip">
+          <h4>Follow-up Timeline</h4>
+          <p>Check status regularly. If required, approach the local police station with FIR ID.</p>
+        </div>
+        <div class="tip">
+          <h4>Data Protection</h4>
+          <p>Only authorized officers can access your FIR data and documents.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Frequently Asked Questions</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>How do I get my FIR ID?</h4>
+          <p>After successful submission, the FIR ID is displayed on the screen and stored for tracking.</p>
+        </div>
+        <div class="tip">
+          <h4>Is OTP mandatory?</h4>
+          <p>Yes, OTP verification confirms identity before FIR submission.</p>
+        </div>
+        <div class="tip">
+          <h4>What if I made a mistake?</h4>
+          <p>Use the contact form with your FIR ID to request corrections.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>Virtual Police Station</div>
+    <div class="footer-links">
+      <!-- <a href="fir.html">Start FIR</a>
+      <a href="track.html">Track FIR</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="support.html">Help</a>
+      <a href="docs.html">Docs</a> -->
+    </div>
+  </footer>
+
+  <script src="assets/js/ui.js"></script>
+</body>
+
+</html>

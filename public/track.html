@@ -1,0 +1,124 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Track FIR - Virtual Police Station</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Serif+Display&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="badge"><i class="fa-solid fa-shield"></i></div>
+      <div>
+        <div class="title">Virtual Police Station</div>
+        <div class="subtitle">Track eFIR</div>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="nav" id="navMenu">
+      <a class="nav-btn" href="index.html">Citizen Portal</a>
+      <a class="nav-btn" href="fir.html">Start FIR</a>
+      <a class="nav-btn" href="track.html">Track FIR</a>
+      <a class="nav-btn" href="about.html">About</a>
+      <a class="nav-btn" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="panel glass">
+      <h2>Track FIR</h2>
+      <div class="track-grid">
+        <form id="trackForm" class="track-form">
+          <label>Enter FIR ID</label>
+          <div class="otp-row">
+            <input type="number" id="trackId" autocomplete="off" required />
+            <button class="btn small" type="submit">Track</button>
+          </div>
+          <div class="hint">Use the FIR ID shown after submission.</div>
+        </form>
+        <div id="trackResult" class="track-card">
+          <div class="muted">No FIR loaded yet.</div>
+        </div>
+      </div>
+      <div class="timeline" id="statusTimeline">
+        <div class="timeline-step active" data-status="Submitted">
+          <h4>Submitted</h4>
+          <p>FIR received by the system.</p>
+        </div>
+        <div class="timeline-step" data-status="In Review">
+          <h4>In Review</h4>
+          <p>Officer verification in progress.</p>
+        </div>
+        <div class="timeline-step" data-status="Assigned">
+          <h4>Assigned</h4>
+          <p>Case assigned to concerned unit.</p>
+        </div>
+        <div class="timeline-step" data-status="Closed">
+          <h4>Closed</h4>
+          <p>Final resolution completed.</p>
+        </div>
+      </div>
+      <p class="hint">Status timeline updates when the FIR status is updated by the admin.</p>
+    </section>
+
+    <section class="panel glass">
+      <h2>India Access Map</h2>
+      <p class="lead">This map highlights the region for citizen access and helps visualize reporting coverage.</p>
+      <div class="map-controls">
+        <button class="btn small" id="mapIndia">India View</button>
+        <button class="btn small ghost" id="mapUser">My Location</button>
+      </div>
+      <div id="mapInfo" class="hint">Detecting nearest location...</div>
+      <div id="indiaMap" class="india-map"></div>
+    </section>
+
+    <section class="panel glass">
+      <h2>Tracking Tips</h2>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Keep FIR ID Safe</h4>
+          <p>Use the FIR ID from the submission page to track updates.</p>
+        </div>
+        <div class="tip">
+          <h4>Status Changes</h4>
+          <p>Status updates reflect internal review and assignment.</p>
+        </div>
+        <div class="tip">
+          <h4>Follow-up</h4>
+          <p>If status stays unchanged for long, contact the helpdesk.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div> Virtual Police Station</div>
+    <!-- <div class="footer-links">
+      <a href="fir.html">Start FIR</a>
+      <a href="track.html">Track FIR</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="support.html">Help</a>
+      <a href="docs.html">Docs</a>
+    </div> -->
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>
