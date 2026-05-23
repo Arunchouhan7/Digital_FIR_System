@@ -842,7 +842,7 @@ app.get("/api/admin/logs", async (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "admin.html"));
+  res.sendFile(path.join(__dirname, "public", "admin", "index.html"));
 });
 
 app.get("/fir/print/:id", async (req, res) => {

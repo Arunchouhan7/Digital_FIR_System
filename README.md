@@ -106,12 +106,12 @@ If DB connection fails, admin logs and visitor details are also written to:
 - Geo-IP uses `ipapi.co`.
 - OTP SMS uses Fast2SMS (`FAST2SMS_API_KEY` in `.env`).
 - Ensure `uploads/` folder is writable.
-- Admin page is hidden from public navigation. Access via `/admin.html` or `/admin`.
+- Admin page is hidden from public navigation. Access via `/admin`.
 
 ## Folder Structure
 - `server.js` (Express server)
 - `public/` (frontend)
 - `public/admin/index.html` (admin UI)
-- `public/admin.html` (admin entry page)
+- `public/admin/index.html` (admin page)
 - `public/assets/` (css, js, img)
 - `uploads/` (contact attachments)
