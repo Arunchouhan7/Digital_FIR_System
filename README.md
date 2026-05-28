@@ -1,4 +1,4 @@
-﻿# Virtual Police Station (MS336)
+﻿# Virtual Police Station
 
 ## Features
 - Aadhaar-based OTP verification
